@@ -1,6 +1,6 @@
 import React from "react";
-import wepik from "../assets/wepik-export-20231215143736pQJ1.png";
-import wepik2 from "../assets/wepik-export-202312151501034xOk.png";
+import wepik from "../../assets/wepik-export-20231215143736pQJ1.png";
+import wepik2 from "../../assets/wepik-export-202312151501034xOk.png";
 import "./homepagecarousel.css";
 
 const HomeCarousel = () => {  

@@ -4,8 +4,7 @@ import AppBar from "@mui/material/AppBar";
 import Box from "@mui/material/Box";
 import Toolbar from "@mui/material/Toolbar";
 import Button from "@mui/material/Button";
-import AdbIcon from "@mui/icons-material/Adb";
-import blooming from "../assets/blooming logo-01 (2) 2.png" // Assuming "blooming" is the new image file
+import blooming from "../../assets/blooming logo-01 (2) 2.png"
 
 function Navbar() {
   return (
