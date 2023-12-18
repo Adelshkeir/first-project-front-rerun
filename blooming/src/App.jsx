@@ -1,5 +1,5 @@
-import HomePage from './pages/homepage'
-import Categoriespage from './pages/categoriespage'
+import HomePage from './pages/homepage/homepage.jsx'
+import Categoriespage from './pages/categories/categoriespage.jsx'
 import { BrowserRouter,Routes,Route } from 'react-router-dom'
 
 
