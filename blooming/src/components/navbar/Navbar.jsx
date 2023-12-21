@@ -8,19 +8,21 @@ import blooming from "../../assets/blooming logo-01 (2) 2.png"
 
 function Navbar() {
   return (
-    <AppBar position="static" sx={{ bgcolor: "#f9f9f9" }}>
+    <AppBar position="static" sx={{ bgcolor: "#FFFAEC" }}>
       <Toolbar>
-        <img
-          src={blooming}
-          alt="Blooming Logo"
-          style={{ maxHeight: "100px", maxWidth: "100%", height: "auto" }}
-        />
+      <Link to="/" style={{ textDecoration: "none" }}>
+          <img
+            src={blooming}
+            alt="Blooming Logo"
+            style={{ maxHeight: "100px", maxWidth: "100%", height: "auto" }}
+          />
+        </Link>
         <Box sx={{ display: "flex", justifyContent: "flex-end", flexGrow: 1 }}>
           <Button component={Link} to="/about" sx={{ mx: 1, color: "#F13A44" }}>
             About
           </Button>
-          <Button component={Link} to="/menu" sx={{ mx: 1, color: "#F13A44" }}>
-            Menu
+          <Button component={Link} to="/Categories" sx={{ mx: 1, color: "#F13A44" }}>
+            Categories
           </Button>
           <Button component={Link} to="/contact" sx={{ mx: 1, color: "#F13A44" }}>
             Contact Us

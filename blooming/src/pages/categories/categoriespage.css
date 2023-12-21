@@ -1,11 +1,63 @@
-.Categories-header{
-text-align: center;
-color: #F13A44;
-margin-top: 20px;
+@import url("https://fonts.cdnfonts.com/css/rye");
+@import url("https://fonts.cdnfonts.com/css/knewave");
+
+.Categories-main {
+  display: flex;
+  flex-direction: column;
+  gap: 80px;
+  background-color: #FFFAEC;
+  height: 100%;
 }
 
-.Categories-second-header{
-    text-align: center;
-    color: #F13A44;
+.Categories-header {
+  text-align: center;
+  color: #f13a44;
+  font-family: rye;
+  font-size: 50px;
+}
+
+.Categories-second-header {
+  text-align: center;
+  color: #f13a44;
+  font-family: rye;
+  font-size: 30px;
+}
+
+.Categories-display {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  width: 80%;
+  margin: auto;
+  height: 380px;
+}
+
+.campaigncardcontainer {
+  width: 80%;
+  margin: auto;
+  height: 100%;
+  margin-bottom: 20px;
+}
+
+.campaigncardcontainer img {
+  border-radius: 20%;
+  width: 100%;
+  height: 100%;
+}
+
+.campaigncardcontainer p {
+  text-align: center;
+  color: #d77a46;
+  font-size: 40px;
+  padding-top: 10px;
+  font-family: rye;
+}
+
+@media only screen and (max-width: 767px) {
+  .Categories-display {
+    grid-template-columns: 1fr;
+  }
+  .campaigncardcontainer {
+    padding-top: 30px;
     margin-top: 30px;
+  }
 }

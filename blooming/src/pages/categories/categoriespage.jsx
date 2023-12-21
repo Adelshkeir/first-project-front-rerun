@@ -1,5 +1,7 @@
 import Navbar from "../../components/navbar/Navbar";
 import "./categoriespage.css";
+import Categorypagecard from "./categoriespagecard";
+import Categorycarousel from "./categorycarousel";
 const Categoriespage = () => {
   return (
     <div className="Categories-main">
@@ -11,27 +13,7 @@ const Categoriespage = () => {
         Discover Your Perfect Dessert Getaway
       </h5>
 
-      <div className="Categories-display">
-
-
-
-
-
-
-
-        <div className="Categories-card"></div>
-
-        <div></div>
-
-        <div></div>
-
-
-
-
-
-
-
-      </div>
+      <Categorycarousel />
     </div>
   );
 };

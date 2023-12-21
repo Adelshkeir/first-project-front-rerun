@@ -16,7 +16,7 @@ const HomeCarousel = () => {
         <div className="carousel-item active">
           <img
             src={wepik}
-            className="w-100 h-100 vh-100 custom-big-image-home"
+            className="w-100 h-100 vh-100   custom-big-image-home"
             alt="..."
           />
           <div className="carousel-caption position-absolute top-50 start-50 translate-middle text-white">

@@ -1,0 +1,99 @@
+body {
+  font-family: Arial, sans-serif;
+  margin: 0px;
+  padding: 0px;
+}
+
+.About-us-page {
+  display: grid;
+  grid-template-columns: 1fr;
+  row-gap: 1em;
+  justify-content: space-around;
+}
+
+.about-us-section1,
+.about-us-section2 {
+  margin-top: 30px;
+  display: grid;
+  grid-template-columns: 50% 50%;
+  width: 80%;
+  gap: 3em;
+  margin: auto;
+}
+
+.about-us-section1 img {
+  height: 80%;
+  width: 100%;
+  border-radius: 2%;
+  margin-top: 60px;
+}
+
+.about-us-section2 img {
+  height: 80%;
+  width: 100%;
+  border-radius: 2%;
+  margin-top: 60px;
+}
+
+.about-us-section1 p {
+  border-radius: 10px;
+  border-color: #f9f9f99d;
+  box-sizing: 20px;
+  border-width: 5px;
+  height: 80%;
+  width: 100%;
+  padding: 40px;
+  height: 80%;
+  padding-right: 90px;
+  float: left;
+}
+
+.about-us-section1 h2,
+.about-us-section2 h2 {
+  margin-top: 10px;
+  color: #f13a44;
+  font-weight: bold;
+  margin-left: 13px;
+}
+
+.about-us-section1 {
+  margin-top: 50px;
+}
+
+.about-us-section1 img,
+.about-us-section1 p {
+  gap: 7em;
+  justify-content: space-between;
+}
+
+.about-us-section2 p {
+  box-sizing: 20px;
+  border-width: 5px;
+  border-radius: 10px;
+  height: 80%;
+  width: 100%;
+  padding: 50px;
+  height: 80%;
+}
+
+.about-us-first-header {
+  text-align: center;
+}
+
+/* Responsive Styles for 480px */
+@media only screen and (max-width: 480px) {
+  .about-us-section1,
+  .about-us-section2 {
+    grid-template-columns: 1fr;
+    width: 100%;
+  }
+}
+
+/* Responsive Styles for iPad Mini */
+@media only screen and (max-width: 760px), (max-width: 670px) {
+  .about-us-section1,
+  .about-us-section2 {
+    grid-template-columns: 1fr;
+    width: 100%;
+  }
+}
