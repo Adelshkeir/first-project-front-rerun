@@ -1,11 +1,11 @@
 import React from 'react';
 import Navbar from '../../components/navbar/Navbar'
-import Productcarousel from '../../components/cardProductCarousel.jsx';
+import Productcarousel from '../../components/cardProductCarousel'
 
 import './productspage.css';
-import CardProduct from '../../components/cardProduct.jsx'
 
-const productspage = () => {
+
+const Productspage = () => {
   return (
     <div>
       <Navbar />
@@ -21,4 +21,4 @@ const productspage = () => {
   );
 };
 
-export default productspage;
+export default Productspage;

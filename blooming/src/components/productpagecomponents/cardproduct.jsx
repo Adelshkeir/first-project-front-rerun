@@ -1,5 +1,6 @@
 import React from 'react'
 
+import wpc from '../../assets/blooming logo-01 (2) 2.png';
 
 
 
@@ -24,5 +25,3 @@ function CardProduct({data}) {
 }
 
 export default CardProduct
-
-

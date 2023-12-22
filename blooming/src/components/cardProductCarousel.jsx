@@ -1,7 +1,12 @@
+import React, { useEffect,useState } from "react";
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
 
-import CardProduct from './cardProduct.jsx'
+import CardProduct from './cardProduct';
+import axios from 'axios';
+
+
+
 
 const responsive = {
   desktop: {
@@ -23,14 +28,22 @@ const responsive = {
 
 const Productcarousel = () => {
 
+  const [data, setData] = useState([]);
 
+  useEffect(() => {
+    const fetchProfileData = async () => {
+      try {
+        const response = await axios.get('http://localhost:8100/api/products');
+        console.log("res",response.data.data);
 
+        setData(response.data.data);
+      } catch (error) {
+        console.error('Error fetching profile data:', error);
+      }
+    };
 
-
-
-
-
-
+    fetchProfileData();
+  }, []);
 
   return (
     <Carousel
@@ -49,9 +62,16 @@ const Productcarousel = () => {
       dotListClass="custom-dot-list-style"
       itemClass="carousel-item-padding-40-px"
     >
+      {data && data.map((item,index)=>(
+      <CardProduct key={index} data={item} />
+))}
 
+      {/* <CardProduct/>
       <CardProduct/>
-
+      <CardProduct/>
+      <CardProduct/>
+      <CardProduct/>
+      <CardProduct/> */}
       
     </Carousel>
   );
