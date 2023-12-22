@@ -1,0 +1,15 @@
+.background-dash{
+    background-color:#f9f9f9
+}
+
+.text-dash{
+    color: #D77A46;
+}
+
+
+
+.logout{
+    display: flex;
+    justify-content: flex-end;
+    margin-left: 1525px;
+}

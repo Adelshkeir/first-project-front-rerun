@@ -1,0 +1,23 @@
+.main-footer {
+    background: linear-gradient(to right top, rgba(56, 30, 18, 0.7), rgba(147, 89, 62, 0.7), rgba(135, 93, 72, 0.7), rgba(111, 77, 58, 0.7), rgba(61, 57, 55, 0.5));
+    padding: 20px;
+    color: #fff;
+    text-align: center;
+    height: 230px;
+    display: grid;
+    grid-template-columns: 33% 33% 33%;
+}
+
+.quick-links-1,
+.quick-links-2 {
+    /* margin-top: 20px; */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    font-size: 20px
+}
+
+footer .rights p {
+    color: white;
+
+}
