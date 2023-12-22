@@ -1,0 +1,61 @@
+.form {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    align-content: center;
+    height: 100%;
+}
+
+form .input-container input {
+    padding: 8px;
+    border-radius: 5px;
+}
+
+form .input-container input:focus {
+    box-shadow: 0 0 10px #ff0000;
+}
+
+
+.button-container button {
+    color: white;
+    background-color: brown;
+    padding: 10px 25px;
+    font-weight: 700;
+}
+
+.button-container button:hover {
+    background-color: rgb(203, 159, 56);
+}
+
+
+form label {
+    margin-bottom: 7px;
+    color: white;
+    font-weight: 700;
+}
+
+form h1 {
+    color: white
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    height: 45vh;
+    width: 25%;
+    background: linear-gradient(to right top, rgba(216, 129, 92, 0.7), rgba(175, 111, 82, 0.7), rgba(135, 93, 72, 0.7), rgba(98, 75, 63, 0.7), rgba(61, 57, 55, 0.7));
+    border-radius: 8px;
+}
+
+.input-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.main-dashboard-admin {
+    background: url('../../assets/admin-pic.jpg') no-repeat center center/cover;
+    height: 1000px;
+    margin-top: 65px;
+}
