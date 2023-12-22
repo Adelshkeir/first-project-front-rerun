@@ -22,6 +22,16 @@ const responsive = {
 };
 
 const Productcarousel = () => {
+
+
+
+
+
+
+
+
+
+
   return (
     <Carousel
       swipeable={true}
@@ -41,11 +51,7 @@ const Productcarousel = () => {
     >
 
       <CardProduct/>
-      <CardProduct/>
-      <CardProduct/>
-      <CardProduct/>
-      <CardProduct/>
-      <CardProduct/>
+
       
     </Carousel>
   );

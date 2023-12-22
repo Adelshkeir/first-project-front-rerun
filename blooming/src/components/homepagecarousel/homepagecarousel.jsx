@@ -4,6 +4,8 @@ import wepik2 from "../../assets/wepik-export-202312151501034xOk.png";
 import "./homepagecarousel.css";
 
 const HomeCarousel = () => {  
+
+  
   return (
     <div
       id="carouselExampleAutoplaying"
