@@ -4,7 +4,7 @@ import './mainDashboard.css'
 const mainDashboard = () => {
     return (
         <div className='main-dashboard-admin'>
-            <div className="form">
+            <div className="form-dashboard">
                 <form>
                     <h1>Login</h1>
                     <div className="input-container">

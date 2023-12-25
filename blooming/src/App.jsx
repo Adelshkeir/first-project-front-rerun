@@ -7,6 +7,7 @@ import Productspage from './pages/productspage/productspage.jsx'
 import './main.css'
 import AdminPage from './pages/admin/AdminPage.jsx'
 import Category from './pages/admin/CategoryPage.jsx'
+import Product from './pages/admin/ProductPage.jsx'
 // import Product from './pages/admin/ProductPage.jsx'
 
 function App() {
@@ -21,7 +22,7 @@ function App() {
         <Route path='/products' element={<Productspage />}></Route>
         <Route path="/admin" element={<AdminPage />}></Route>
         <Route path="/category" element={<Category />}></Route>
-        {/* <Route path="/product" element={<Product />}></Route> */}
+        <Route path="/product" element={<Product />}></Route>
       </Routes>
     </BrowserRouter>
   )

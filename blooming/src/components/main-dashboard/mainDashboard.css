@@ -1,4 +1,4 @@
-.form {
+.form-dashboard {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -6,12 +6,12 @@
     height: 100%;
 }
 
-form .input-container input {
+.form-dashboard form .input-container input {
     padding: 8px;
     border-radius: 5px;
 }
 
-form .input-container input:focus {
+.form-dashboard form .input-container input:focus {
     box-shadow: 0 0 10px #ff0000;
 }
 
@@ -28,17 +28,17 @@ form .input-container input:focus {
 }
 
 
-form label {
+.form-dashboard form label {
     margin-bottom: 7px;
     color: white;
     font-weight: 700;
 }
 
-form h1 {
+.form-dashboard form h1 {
     color: white
 }
 
-form {
+.form-dashboard form {
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;

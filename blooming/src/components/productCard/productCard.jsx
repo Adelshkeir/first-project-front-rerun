@@ -1,50 +1,49 @@
-import "./cards.css";
+import "./productCard.css";
 import CakeImageMain from "../../assets/cake-mehio.jpg";
 import EditIcon from "../../assets/Edit-Icon.png";
 import DeleteIcon from "../../assets/Delete-Icon.png";
 import axios from "axios";
 
-// 2 receiving category props from category page (from parent to child) in order to access the object keys in their specified location
-const cards = ({ category, handleChangeObject }) => {
-  const deleteCategory = async (id) => {
+const ProductCard = ({ product, handleChangeProduct }) => {
+  const deleteProduct = async (id) => {
     try {
       const response = await axios.delete(
-        `http://localhost:4000/api/category/${category.id}`
+        `http://localhost:4000/api/product/${product.id}`
       );
       console.log(response.data);
     } catch (error) {
       console.log(error);
     }
   };
-
   return (
-    <div className="card-container">
-      <div className="card">
-        <div className="card-img">
+    <div className="card-container-product">
+      <div className="card-product">
+        <div className="card-img-product">
           <img
-            className="cake-main-image"
-            src={`http://localhost:4000/${category.category_image}`}
+            className="cake-main-image-product"
+            src={`http://localhost:4000/${product.image}`}
           />
         </div>
-        <div className="card-title">{category.category_name}</div>
-        <div className="card-subtitle">{category.date}</div>
-        <hr className="card-divider" />
-        <div className="card-footer">
-          <div className="card-price">
-            <span className="edit-span">
-              {/* 3 passing handleChangeObject to the parent so when pressing on the button it will fire the function declared in the parent component with category as parameter which is the object (each,category (both are the same)) */}
+        <div className="card-title-product">{product.product_name}</div>
+        <div className="card-subtitle-product">{product.description}</div>
+        <div className="card-subtitle-product">{product.flavours}</div>
+        <div className="card-subtitle-product">
+          {product.Category.category_name}
+        </div>
+        <hr className="card-divider-product" />
+        <div className="card-footer-product">
+          <div className="card-price-product">
+            <span className="edit-span-product">
               <img
-                onClick={() => {
-                  handleChangeObject(category);
-                }}
                 src={EditIcon}
+                onClick={() => {
+                  handleChangeProduct(product);
+                }}
               />
-            </span>{" "}
+            </span>
+            {product.price}
             <span className="delete-span">
-              <img
-                onClick={() => deleteCategory(category.id)}
-                src={DeleteIcon}
-              />
+              <img onClick={() => deleteProduct(product.id)} src={DeleteIcon} />
             </span>
           </div>
           {/* <button className="card-btn">
@@ -67,4 +66,4 @@ const cards = ({ category, handleChangeObject }) => {
   );
 };
 
-export default cards;
+export default ProductCard;
