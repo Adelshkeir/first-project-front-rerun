@@ -5,7 +5,7 @@ import AddProductForm from "../../components/addProductForm/addProductForm.jsx";
 import EditProductForm from "../../components/editProductForm/editProductForm.jsx";
 import { useState, useEffect } from "react";
 import axios from "axios";
-import "./CategoryPage.css";
+import "./ProductPage.css";
 // import './sidebar.css'
 
 const ProductsPage = () => {
@@ -21,9 +21,6 @@ const ProductsPage = () => {
     setProduct(response.data);
   };
 
-
- 
-
   const handleChangeProduct = (productObject) => {
     setSingleProduct(productObject);
     setEditOpen(true);
@@ -38,7 +35,7 @@ const ProductsPage = () => {
     fetchProduct();
   }, [refreshProductPage]);
   return (
-    <>
+    <div className="category-page-container">
       <Sidebar />
       {isOpen && <AddProductForm setIsOpen={setIsOpen} refresh={refPage} />}
       {isEditOpen && (
@@ -48,19 +45,22 @@ const ProductsPage = () => {
           refresh={refPage}
         />
       )}
-      <div onClick={() => setIsOpen(true)} className="add-button-icon">
+      <div className="add-button-icon">
+      <button onClick={() => setIsOpen(true)}  >
         <img src={AddIcon} />
+      </button>
       </div>
-      <div className="category-cards">
+      <div className="product-cards">
         {product.map((eachProduct) => (
           <ProductCard
             key={eachProduct.id}
             product={eachProduct}
             handleChangeProduct={handleChangeProduct}
+            refresh={refPage}
           />
         ))}
       </div>
-    </>
+    </div>
   );
 };
 

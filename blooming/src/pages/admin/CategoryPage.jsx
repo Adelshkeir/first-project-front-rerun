@@ -2,7 +2,7 @@ import Card from "../../components/card/cards.jsx";
 import AddIcon from "../../assets/Add-Icon.png";
 import Sidebar from "../../components/sidebar/sidebar.jsx";
 import { useState, useEffect } from "react";
-import AddForm from "./AddForm.jsx";
+import AddForm from "../../components/addCategoryForm/AddCategoryForm.jsx";
 import EditCategoryForm from "../../components/editCategoryForm/editCategoryForm.jsx";
 import axios from "axios";
 import "./CategoryPage.css";
@@ -38,7 +38,7 @@ const CategoriesPage = () => {
   }, [refreshPage]);
 
   return (
-    <>
+    <div className="category-page-container">
       <Sidebar />
       {open && <AddForm refresh={refPage} setIsOpen={setOpen} />}
       {openEditForm && (
@@ -49,8 +49,10 @@ const CategoriesPage = () => {
         />
       )}
 
-      <div onClick={() => setOpen(true)} className="add-button-icon">
-        <img src={AddIcon} />
+      <div className="add-button-icon">
+        <button onClick={() => setOpen(true)}>
+          <img src={AddIcon} />
+        </button>
       </div>
       <div className="category-cards">
         {categories.map((each) => (
@@ -59,10 +61,11 @@ const CategoriesPage = () => {
             key={each.id}
             category={each}
             handleChangeObject={handleChangeObject}
+            refresh={refPage}
           />
         ))}
       </div>
-    </>
+    </div>
   );
 };
 

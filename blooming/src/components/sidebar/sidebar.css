@@ -4,6 +4,8 @@
 
 .text-dash{
     color: #D77A46;
+    text-decoration: none;
+    list-style: none;
 }
 
 

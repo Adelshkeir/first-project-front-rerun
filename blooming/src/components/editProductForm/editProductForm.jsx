@@ -3,12 +3,33 @@ import axios from "axios";
 import "./editProductForm.css";
 
 const EditProductForm = ({ setEditOpen, singleProduct, refresh }) => {
+  const [category, setCategory] = useState("");
+  const [productCategory, setProductCategory] = useState([]);
+
+  const fetchCategories = async () => {
+    try {
+      const response = await axios.get("http://localhost:4000/api/category");
+      console.log("hayde el response", response.data);
+      setProductCategory(response.data);
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
+  useEffect(() => {
+    fetchCategories();
+  }, []);
+
+  const allcategories = productCategory.map(
+    (category) => category.category_name
+  );
+
+
   const [data, setData] = useState(singleProduct);
 
   useEffect(() => {
     setData(singleProduct);
   }, [singleProduct]);
-
 
   const handleEditProduct = async (e) => {
     e.preventDefault();
@@ -27,111 +48,136 @@ const EditProductForm = ({ setEditOpen, singleProduct, refresh }) => {
         fData
       );
       console.log(response);
-      refresh("a")
+      refresh("a");
       setEditOpen(false);
     } catch (error) {
       console.log(error);
     }
   };
-
+  console.log(data.Category.category_image)
   return (
-    <div className="formz-container-123">
-      <form className="hello" onSubmit={handleEditProduct}>
-        <div className="flex flex-col mb-4">
-          <label className="block text-main text-lg mb-2">
-            Product Name
-            {/* 2 */}
-            <input
-              type="text"
-              value={data.product_name || ""}
-              onChange={(e) => {
-                setData({ ...data, product_name: e.target.value });
-              }}
-            />
-          </label>
-        </div>
-        <div className="flex flex-col mb-4">
-          <label className="block text-main text-lg mb-2">
-            category Name
-            <input
-              type="text"
+    <div className="form-container-edit-product">
+      <form className="form-edit-category" onSubmit={handleEditProduct}>
+        <div className="inputs-container-edit">
+          <div className="input-label-container-product-edit">
+            <label className="label-product-edit">
+              Product Name
+              {/* 2 */}
+              <input
+              // value: the data shown on the form same as data on the card (filled automatically)
+                type="text"
+                value={data.product_name || ""}
+                onChange={(e) => {
+                  setData({ ...data, product_name: e.target.value });
+                }}
+              />
+            </label>
+          </div>
+          <div className="input-label-container-product-edit">
+            <label className="label-product-edit">
+            Category:
+            
+            <select
               value={data.Category.category_name || ""}
-              onChange={(e) => {
-                setData({
-                  ...data,
-                  Category: { ...data.Category, category_name: e.target.value },
-                });
-              }}
+              onChange={(e) => setCategory( e.target.value)}
+              required
+              className="option-category"
+            >
+              <option value="">Select a category</option>
+              {allcategories.map((category, index) => (
+                <option key={index} value={category}>
+                  {category}
+                </option>
+              ))}
+            </select>
+            </label>
+          </div>
+          <div className="input-label-container-product-edit">
+          <img
+              src={`http://localhost:4000/${data.image}`}
+              width={"200px"}
+              alt={data.id}
             />
-          </label>
+            
+            </div>
+           
+          <div className="input-label-container-product-edit">
+            <label className="label-product-edit">
+              Product Image
+              <input
+                type="file"
+                onChange={(e) => {
+                  setData({ ...data, image: e.target.files[0] });
+                }}
+              />
+            </label>
+          </div>
+          <div className="input-label-container-product-edit">
+            <label className="label-product-edit">
+              Description
+              <input
+                type="text"
+                value={data.description || ""}
+                onChange={(e) => {
+                  setData({ ...data, description: e.target.value });
+                }}
+              />
+            </label>
+          </div>
+          <div className="input-label-container-product-edit">
+            <label className="label-product-edit">
+              Flavours
+              <input
+                type="text"
+                value={data.flavours || ""}
+                onChange={(e) => {
+                  setData({ ...data, flavours: e.target.value });
+                }}
+              />
+            </label>
+          </div>
+          <div className="input-label-container-product-edit">
+            <label className="label-product-edit">
+              Price
+              <input
+                type="text"
+                value={data.price || ""}
+                onChange={(e) => {
+                  setData({ ...data, price: e.target.value });
+                }}
+              />
+            </label>
+          </div>
+          <div className="input-label-container-product-edit">
+            <label className="label-product-edit">
+              Best Seller
+              <input
+                type="text"
+                value={data.bestSeller || ""}
+                onChange={(e) => {
+                  setData({ ...data, bestSeller: e.target.value });
+                }}
+              />
+            </label>
+          </div>
         </div>
-        <div className="flex flex-col mb-4">
-          <label className="block text-main text-lg mb-2">
-            Product Image
-            <input
-              type="file"
-              onChange={(e) => {
-                setData({ ...data, image: e.target.files[0] });
+        <div className="product-buttons-container">
+          <div className="cancel-product-1">
+            <button
+              className="cancel-button-product"
+              onClick={() => {
+                setEditOpen(false);
               }}
-            />
-          </label>
+            >
+              Cancel
+            </button>
+          </div>
+          <div className="add-product-1">
+            <button className="add-button-product" type="submit">
+              Edit
+            </button>
+          </div>
         </div>
-        <div className="flex flex-col mb-4">
-          <label className="block text-main text-lg mb-2">
-            Description
-            <input
-              type="text"
-              value={data.description || ""}
-              onChange={(e) => {
-                setData({ ...data, description: e.target.value });
-              }}
-            />
-          </label>
-        </div>
-        <div className="flex flex-col mb-4">
-          <label className="block text-main text-lg mb-2">
-            Flavours
-            <input
-              type="text"
-              value={data.flavours || ""}
-              onChange={(e) => {
-                setData({ ...data, flavours: e.target.value });
-              }}
-            />
-          </label>
-        </div>
-        <div className="flex flex-col mb-4">
-          <label className="block text-main text-lg mb-2">
-            Price
-            <input
-              type="text"
-              value={data.price || ""}
-              onChange={(e) => {
-                setData({ ...data, price: e.target.value });
-              }}
-            />
-          </label>
-        </div>
-        <div className="flex flex-col mb-4">
-          <label className="block text-main text-lg mb-2">
-            Best Seller
-            <input
-              type="text"
-              value={data.bestSeller || ""}
-              onChange={(e) => {
-                setData({ ...data, bestSeller: e.target.value });
-              }}
-            />
-          </label>
-        </div>
-        <button
-          onClick={() => {
-            setEditOpen(false);
-          }}
-        >
-          Cancel
-        </button>
-        <button type="submit">Edit</button>
       </form>
     </div>
   );

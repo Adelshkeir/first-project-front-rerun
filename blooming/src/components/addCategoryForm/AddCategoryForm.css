@@ -1,9 +1,9 @@
-.form-container-product {
+.form-container-category {
   position: absolute;
   left: 560px;
   top: 250px;
   z-index: 1;
-  height: 70vh;
+  height: 50vh;
   width: 740px;
   background: linear-gradient(
     to right top,
@@ -16,7 +16,7 @@
   border-radius: 12px;
 }
 
-.form-submit-product {
+.form-submit-category {
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -25,8 +25,7 @@
   width: 100%;
 }
 
-.input-label-container-product .label-product ,
-.input-label-container-product-1{
+.input-label-container-category .label-category {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
@@ -34,14 +33,14 @@
   color: white;
 }
 
-.product-buttons-container {
+.category-buttons-container {
   width: 100%;
   display: flex;
   justify-content: space-evenly;
 }
 
-.add-product-1 button,
-.cancel-product-1 button {
+.add-category-1 button,
+.cancel-category-1 button {
   background: linear-gradient(
     to right top,
     rgba(216, 129, 92, 0.308),
@@ -57,10 +56,10 @@
   padding: 8px;
 }
 
-.product-buttons-container .add-product-1 button:hover {
+.category-buttons-container .add-category-1 button:hover {
   background: #37a08e;
 }
 
-.product-buttons-container .cancel-product-1 button:hover {
+.category-buttons-container .cancel-category-1 button:hover {
   background: #a03737;
 }

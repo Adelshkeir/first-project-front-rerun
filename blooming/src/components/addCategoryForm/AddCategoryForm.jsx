@@ -1,15 +1,18 @@
-import { useState, useEffect } from "react";
+import React from "react";
+import "./AddCategoryForm.css";
+import { useState } from "react";
 import axios from "axios";
-import "./editCategoryForm.css";
-// 5 here we are setting the data to single category which is the object (each,category,obj and now singleCategory)
-const EditCategoryForm = ({ refresh, setIsOpen, singleCategory }) => {
-  const [data, setData] = useState(singleCategory);
 
-  useEffect(() => {
-    setData(singleCategory);
-  }, [singleCategory]);
+const AddForm = ({ refresh, setIsOpen }) => {
+  //category object (1)
+  //jebna el category object ta n3abbi
+  const [data, setData] = useState({
+    category_name: "alicopter",
+    category_image: null,
+    date: "2023-01-01",
+  });
 
-  const handleEditCategory = async (e) => {
+  const handleAddCategory = async (e) => {
     e.preventDefault();
     try {
       const fData = new FormData();
@@ -17,24 +20,30 @@ const EditCategoryForm = ({ refresh, setIsOpen, singleCategory }) => {
       fData.append("date", data.date);
       fData.append("category_image", data.category_image);
 
-      const response = await axios.put(
-        `http://localhost:4000/api/category/${data.id}`,
+      const response = await axios.post(
+        "http://localhost:4000/api/category",
         fData
       );
       console.log(response);
       refresh("a");
       setIsOpen(false);
     } catch (error) {
-      console.log(error);
+      // Check if the response status is 400
+      if (error.response && error.response.status === 400) {
+        // Display the error message to the user
+        alert(error.response.data.message);
+      } else {
+        console.log(error.message);
+      }
     }
   };
 
   return (
-    <div className="form-container-edit-category">
-      <form onSubmit={handleEditCategory} className="form-edit-category">
-        <div className="inputs-container-edit">
-          <div className="input-label-container-category-edit">
-            <label className="label-category-edit">
+    <div className="form-container-category">
+      <form onSubmit={handleAddCategory} className="form-submit-category">
+        <div className="inputs-container">
+          <div className="input-label-container-category">
+            <label className="label-category">
               Category Name
               {/* 2 */}
               <input
@@ -46,15 +55,9 @@ const EditCategoryForm = ({ refresh, setIsOpen, singleCategory }) => {
               />
             </label>
           </div>
-          <div className="input-label-container-category-edit">
-            <img
-              src={`http://localhost:4000/${data.category_image}`}
-              width={"200px"}
-              alt={data.id}
-            />
-          </div>
-          <div className="input-label-container-category-edit">
-            <label className="label-category-edit">
+
+          <div className="input-label-container-category">
+            <label className="label-category">
               Category Image
               <input
                 type="file"
@@ -64,12 +67,12 @@ const EditCategoryForm = ({ refresh, setIsOpen, singleCategory }) => {
               />
             </label>
           </div>
-          <div className="input-label-container-category-edit">
-            <label className="label-category-edit">
+          <div className="input-label-container-category">
+            <label className="label-category">
               Date
               <input
                 type="text"
-                value={data.date}
+                value={data.date || ""}
                 onChange={(e) => {
                   setData({ ...data, date: e.target.value });
                 }}
@@ -77,7 +80,6 @@ const EditCategoryForm = ({ refresh, setIsOpen, singleCategory }) => {
             </label>
           </div>
         </div>
-
         <div className="category-buttons-container">
           <div className="cancel-category-1">
             <button
@@ -91,7 +93,7 @@ const EditCategoryForm = ({ refresh, setIsOpen, singleCategory }) => {
           </div>
           <div className="add-category-1">
             <button className="add-button-category" type="submit">
-              Edit
+              Add
             </button>
           </div>
         </div>
@@ -100,4 +102,4 @@ const EditCategoryForm = ({ refresh, setIsOpen, singleCategory }) => {
   );
 };
 
-export default EditCategoryForm;
+export default AddForm;

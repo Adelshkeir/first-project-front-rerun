@@ -22,6 +22,8 @@ import Logout from "../../assets/Logout-Icon.png";
 import "./sidebar.css";
 import { Link } from "react-router-dom";
 
+
+
 const drawerWidth = 240;
 
 const openedMixin = (theme) => ({
@@ -120,14 +122,20 @@ export default function MiniDrawer() {
             >
               <MenuIcon />
             </IconButton>
+            
+            
             <Typography
               className="text-dash"
               variant="h6"
               noWrap
               component="div"
-            >
+              style={{ textDecoration: 'none'}}
+            ><Link to="/admin" style={{ textDecoration: 'none', color: '#D77A46'}}>
               DASHBOARD
+              </Link>
             </Typography>
+            
+          
             <div className="logout">
               <img src={Logout} />
             </div>

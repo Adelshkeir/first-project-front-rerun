@@ -1,13 +1,13 @@
-.category-page-container{
+.product-page-container{
     background: linear-gradient(to right top, rgba(216, 129, 92, 0.7), rgba(175, 111, 82, 0.7), rgba(135, 93, 72, 0.7), rgba(98, 75, 63, 0.7), rgba(61, 57, 55, 0.7));
     height: 932px;
 }
 
-.add-button-icon{
+.add-button-icon button{
     display: flex;
     justify-content: flex-end;
-    margin-top: 100px;
-    margin-right: 50px;
+    background: none;
+    border: none;
 }
 
 .add-button-icon img {
@@ -17,7 +17,7 @@
     justify-content: center;
 }
 
-.category-cards{
+.product-cards{
     display: flex;
     justify-content: space-around;
     margin: 0 auto;

@@ -1,7 +1,34 @@
+.form-container-edit-category {
+  position: absolute;
+  left: 560px;
+  top: 250px;
+  z-index: 1;
+  height: 50vh;
+  width: 740px;
+  background: linear-gradient(
+    to right top,
+    rgba(216, 129, 92),
+    rgba(175, 111, 82),
+    rgba(135, 93, 72),
+    rgba(98, 75, 63),
+    rgba(61, 57, 55)
+  );
+  border-radius: 12px;
+}
 
-.form-container-edit-category{
-    background: linear-gradient(to right top, rgba(216, 129, 92, 0.7), rgba(175, 111, 82, 0.7), rgba(135, 93, 72, 0.7), rgba(98, 75, 63, 0.7), rgba(61, 57, 55, 0.7));
-    width: 60%;
-    margin: 0 auto;
+.form-edit-category {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 100%;
+}
 
+.input-label-container-category-edit .label-category-edit {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 40px auto;
+  color: white;
 }

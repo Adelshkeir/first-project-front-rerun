@@ -1,21 +1,40 @@
 import "./addProductForm.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import axios from "axios";
 
-
 //if category not found alert... + check other functionalities
-
 
 // 1st bring the product object
 // 2nd assign the values to the inputs
 // 3rd create a function to handleAddForm with form data (key, value) + fetch
 
 const AddForm = ({ setIsOpen, refresh }) => {
+  const [category, setCategory] = useState("");
+  const [productCategory, setProductCategory] = useState([]);
+
+  const fetchCategories = async () => {
+    try {
+      const response = await axios.get("http://localhost:4000/api/category");
+      console.log("hayde el response", response.data);
+      setProductCategory(response.data);
+    } catch (error) {
+      console.log(error.message);
+    }
+  };
+
+  useEffect(() => {
+    fetchCategories();
+  }, []);
+
+  const allcategories = productCategory.map(
+    (category) => category.category_name
+  );
+
   const [data, setData] = useState({
-    product_name: "alicopter",
-    description: "ayashi",
-    flavours: "mafina n2oul",
-    price: "arkhas shi",
+    product_name: " ",
+    description: " ",
+    flavours: " ",
+    price: " ",
     image: null,
     bestSeller: true,
     category_name: null,
@@ -31,7 +50,7 @@ const AddForm = ({ setIsOpen, refresh }) => {
       fData.append("price", data.price);
       fData.append("image", data.image);
       fData.append("bestSeller", data.bestSeller);
-      fData.append("category_name", data.category_name);
+      fData.append("category_name", category);
 
       const fetchedProduct = await axios.post(
         "http://localhost:4000/api/product",
@@ -41,101 +60,112 @@ const AddForm = ({ setIsOpen, refresh }) => {
       refresh("a");
       setIsOpen(false);
     } catch (error) {
-      console.log(error.message);
-    }
-  };
-   
+      // Check if the response status is 400
+      if (error.response && error.response.status === 400) {
+        // Display the error message to the user
+        alert(error.response.data.message);
+      } else {
+        console.log(error.message);
+      }
+    }}
 
   return (
     <div className="form-container-product">
-      <form onSubmit={handleAddProduct} className="hello">
-        <div className="flex flex-col mb-4">
-          <label className="block text-main text-lg mb-2">
-            Product Name
-            {/* 2 */}
-            <input
-              type="text"
-              value={data.product_name || ""}
-              onChange={(e) => {
-                setData({ ...data, product_name: e.target.value });
-              }}
-            />
-          </label>
+      <form onSubmit={handleAddProduct} className="form-submit-product">
+        <div className="inputs-container">
+          <div className="input-label-container-product">
+            <label className="label-product">
+              Product Name
+              {/* 2 */}
+              <input
+                type="text"
+                value={data.product_name || ""}
+                onChange={(e) => {
+                  setData({ ...data, product_name: e.target.value });
+                }}
+              />
+            </label>
+          </div>
+          <div className="input-label-container-product-1">
+            <label className="label-product" htmlFor="ProductName">
+              Category:
+            </label>
+            <select
+              value={category}
+              onChange={(e) => setCategory(e.target.value)}
+              required
+              className="option-category"
+            >
+              <option value="">Select a category</option>
+              {allcategories.map((category, index) => (
+                <option key={index} value={category}>
+                  {category}
+                </option>
+              ))}
+            </select>
+          </div>
+          <div className="input-label-container-product">
+            <label className="label-product">
+              Product Image
+              <input
+                type="file"
+                onChange={(e) => {
+                  setData({ ...data, image: e.target.files[0] });
+                }}
+              />
+            </label>
+          </div>
+          <div className="input-label-container-product">
+            <label className="label-product">
+              Description
+              <input
+                type="text"
+                value={data.description || ""}
+                onChange={(e) => {
+                  setData({ ...data, description: e.target.value });
+                }}
+              />
+            </label>
+          </div>
+          <div className="input-label-container-product">
+            <label className="label-product">
+              Flavours
+              <input
+                type="text"
+                value={data.flavours || ""}
+                onChange={(e) => {
+                  setData({ ...data, flavours: e.target.value });
+                }}
+              />
+            </label>
+          </div>
+          <div className="input-label-container-product">
+            <label className="label-product">
+              Price
+              <input
+                type="text"
+                value={data.price || ""}
+                onChange={(e) => {
+                  setData({ ...data, price: e.target.value });
+                }}
+              />
+            </label>
+          </div>
+          <div className="input-label-container-product">
+            <label className="label-product">
+              Best Seller
+              <input
+                type="text"
+                value={data.bestSeller || ""}
+                onChange={(e) => {
+                  setData({ ...data, bestSeller: e.target.value });
+                }}
+              />
+            </label>
+          </div>
         </div>
-        <div className="flex flex-col mb-4">
-          <label className="block text-main text-lg mb-2">
-
-            category Name
-            
-            <input type="text" 
-              value={data.category_name || ""}
-              onChange={(e) => {
-                setData({ ...data, category_name: e.target.value });
-              }}
-            />
-          </label>
-        </div>
-        <div className="flex flex-col mb-4">
-          <label className="block text-main text-lg mb-2">
-            Product Image
-            <input
-              type="file"
-              onChange={(e) => {
-                setData({ ...data, image: e.target.files[0] });
-              }}
-            />
-          </label>
-        </div>
-        <div className="flex flex-col mb-4">
-          <label className="block text-main text-lg mb-2">
-            Description
-            <input
-              type="text"
-              value={data.description || ""}
-              onChange={(e) => {
-                setData({ ...data, description: e.target.value });
-              }}
-            />
-          </label>
-        </div>
-        <div className="flex flex-col mb-4">
-          <label className="block text-main text-lg mb-2">
-            Flavours
-            <input
-              type="text"
-              value={data.flavours || ""}
-              onChange={(e) => {
-                setData({ ...data, flavours: e.target.value });
-              }}
-            />
-          </label>
-        </div>
-        <div className="flex flex-col mb-4">
-          <label className="block text-main text-lg mb-2">
-            Price
-            <input
-              type="text"
-              value={data.price || ""}
-              onChange={(e) => {
-                setData({ ...data, price: e.target.value });
-              }}
-            />
-          </label>
-        </div>
-        <div className="flex flex-col mb-4">
-          <label className="block text-main text-lg mb-2">
-            Best Seller
-            <input
-              type="text"
-              value={data.bestSeller || ""}
-              onChange={(e) => {
-                setData({ ...data, bestSeller: e.target.value });
-              }}
-            />
-          </label>
-        </div>
-        {/* <div className="flex flex-col mb-4">
-          <label className="block text-main text-lg mb-2">
+        {/* <div className="input-label-container-product">
+          <label className="label-product">
             Date
             <input
               type="text"
@@ -146,8 +176,23 @@ const AddForm = ({ setIsOpen, refresh }) => {
             />
           </label>
         </div> */}
-        <button type="submit">add</button>
-        <button onClick={() => setIsOpen(false)}>Cancel</button>
+        <div className="product-buttons-container">
+          <div className="cancel-product-1">
+            <button
+              className="cancel-button-cproduct"
+              onClick={() => {
+                setIsOpen(false);
+              }}
+            >
+              Cancel
+            </button>
+          </div>
+          <div className="add-product-1">
+            <button className="add-button-product" type="submit">
+              Add
+            </button>
+          </div>
+        </div>
       </form>
     </div>
   );
