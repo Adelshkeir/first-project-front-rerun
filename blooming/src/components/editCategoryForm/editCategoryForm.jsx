@@ -1,9 +1,12 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import "./editCategoryForm.css";
+import { useAuthContext } from "../../hooks/useAuthContext";
 // 5 here we are setting the data to single category which is the object (each,category,obj and now singleCategory)
 const EditCategoryForm = ({ refresh, setIsOpen, singleCategory }) => {
   const [data, setData] = useState(singleCategory);
+  const { admin } = useAuthContext();
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     setData(singleCategory);
@@ -11,6 +14,10 @@ const EditCategoryForm = ({ refresh, setIsOpen, singleCategory }) => {
 
   const handleEditCategory = async (e) => {
     e.preventDefault();
+    if (!admin) {
+      setError("You must be logged in");
+      return;
+    }
     try {
       const fData = new FormData();
       fData.append("category_name", data.category_name);
@@ -19,7 +26,12 @@ const EditCategoryForm = ({ refresh, setIsOpen, singleCategory }) => {
 
       const response = await axios.put(
         `http://localhost:4000/api/category/${data.id}`,
-        fData
+        fData,
+        {
+          headers: {
+            Authorization: `Bearer ${admin.token}`,
+          },
+        }
       );
       console.log(response);
       refresh("a");
@@ -93,6 +105,7 @@ const EditCategoryForm = ({ refresh, setIsOpen, singleCategory }) => {
             <button className="add-button-category" type="submit">
               Edit
             </button>
+            {error && <div className="error">{error}</div>}
           </div>
         </div>
       </form>

@@ -2,6 +2,7 @@ import React from "react";
 import "./AddCategoryForm.css";
 import { useState } from "react";
 import axios from "axios";
+import { useAuthContext } from "../../hooks/useAuthContext";
 
 const AddForm = ({ refresh, setIsOpen }) => {
   //category object (1)
@@ -11,9 +12,17 @@ const AddForm = ({ refresh, setIsOpen }) => {
     category_image: null,
     date: "2023-01-01",
   });
+  const [error, setError] = useState(null);
+  const {admin} = useAuthContext()
 
   const handleAddCategory = async (e) => {
     e.preventDefault();
+
+    if (!admin) {
+      setError("You must be logged in");
+      return;
+    }
+
     try {
       const fData = new FormData();
       fData.append("category_name", data.category_name);
@@ -22,7 +31,12 @@ const AddForm = ({ refresh, setIsOpen }) => {
 
       const response = await axios.post(
         "http://localhost:4000/api/category",
-        fData
+        fData,
+        {
+          headers: {
+            Authorization: `Bearer ${admin.token}`,
+          },
+        }
       );
       console.log(response);
       refresh("a");
@@ -95,6 +109,7 @@ const AddForm = ({ refresh, setIsOpen }) => {
             <button className="add-button-category" type="submit">
               Add
             </button>
+            {error && <div className="error">{error}</div>}
           </div>
         </div>
       </form>

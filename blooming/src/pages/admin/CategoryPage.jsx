@@ -6,7 +6,7 @@ import AddForm from "../../components/addCategoryForm/AddCategoryForm.jsx";
 import EditCategoryForm from "../../components/editCategoryForm/editCategoryForm.jsx";
 import axios from "axios";
 import "./CategoryPage.css";
-// import './sidebar.css'
+import { useAuthContext } from "../../hooks/useAuthContext.jsx";
 
 const CategoriesPage = () => {
   const [categories, setCategories] = useState([]);
@@ -14,12 +14,22 @@ const CategoriesPage = () => {
   const [open, setOpen] = useState(false);
   const [openEditForm, setOpenEditForm] = useState(false);
   const [singleCategory, setSingleCategory] = useState({});
+  const { admin } = useAuthContext();
 
-  const fetchCategories = async () => {
-    const response = await axios.get("http://localhost:4000/api/category");
-    console.log("hayde el response", response.data);
-    setCategories(response.data);
-  };
+  useEffect(() => {
+    const fetchCategories = async () => {
+      const response = await axios.get("http://localhost:4000/api/category", {
+        headers: {
+          Authorization: `Bearer ${admin.token}`,
+        },
+      });
+      console.log("hayde el response", response.data);
+      setCategories(response.data);
+    };
+    if (admin) {
+      fetchCategories();
+    }
+  }, [refreshPage, admin]);
 
   const refPage = (refresh) => {
     setRefreshPage(refreshPage + refresh);
@@ -32,10 +42,6 @@ const CategoriesPage = () => {
     setOpenEditForm(true);
     console.log("editedObject", obj);
   };
-
-  useEffect(() => {
-    fetchCategories();
-  }, [refreshPage]);
 
   return (
     <div className="category-page-container">

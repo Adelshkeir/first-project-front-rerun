@@ -2,17 +2,33 @@ import "./productCard.css";
 import EditIcon from "../../assets/Edit-Icon.png";
 import DeleteIcon from "../../assets/Delete-Icon.png";
 import axios from "axios";
+import { useAuthContext } from "../../hooks/useAuthContext";
 
 const ProductCard = ({ product, handleChangeProduct,refresh }) => {
+  const admin = useAuthContext();
   const deleteProduct = async (id) => {
+    if (!admin) {
+      return;
+    }
     try {
       const response = await axios.delete(
-        `http://localhost:4000/api/product/${product.id}`
+        `http://localhost:4000/api/product/${product.id}`,
+        {
+          headers: {
+            Authorization: `Bearer ${admin.admin.token}`,
+          },
+    
+        }
+        
       );
+      console.log("tokennn",admin.token)
       console.log(response.data);
       refresh("a")
     } catch (error) {
       console.log(error);
+      console.log("tokennn",admin.token)
+      console.log("hyda admin",admin);
+
     }
   };
   return (

@@ -1,32 +1,51 @@
-import AdminPic from '../../assets/admin-pic.jpg'
-import './mainDashboard.css'
+import "./mainDashboard.css";
+import { useState } from "react";
+import { useLogin } from "../../hooks/useLogin";
 
 const mainDashboard = () => {
-    return (
-        <div className='main-dashboard-admin'>
-            <div className="form-dashboard">
-                <form>
-                    <h1>Login</h1>
-                    <div className="input-container">
-                        <label>Email</label>
-                        <input type="email" name="email" required />
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const { login, error, isLoading } = useLogin();
 
-                    </div>
-                    <div className="input-container">
-                        <label>Password </label>
-                        <input type="password" name="password" required />
-                    </div>
-                    <div className="button-container">
-                        <button type="submit" className="btn">Login</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-        //   <div className="admin-picture">
-        //         <img src={AdminPic} className='admin-pic-class' />
-        //     </div> 
-    )
-}
+  const handleSubmit = async (e) => {
+    e.preventDefault();
 
-export default mainDashboard
+    await login(email, password);
+  };
+  return (
+    <div className="main-dashboard-admin">
+      <div className="form-dashboard">
+        <form onSubmit={handleSubmit}>
+          <h1>Login</h1>
+          <div className="input-container">
+            <label>Email</label>
+            <input
+              type="email"
+              onChange={(e) => setEmail(e.target.value)}
+              value={email}
+              required
+            />
+          </div>
+          <div className="input-container">
+            <label>Password </label>
+            <input
+              type="password"
+              onChange={(e) => setPassword(e.target.value)}
+              value={password}
+              required
+            />
+          </div>
+          <div className="button-container">
+            {/* the button will be disabled when isLoading is true */}
+            <button className="btn" disabled={isLoading}>
+              Login
+            </button>
+            {error && <div className="error">{error}</div>}
+          </div>
+        </form>
+      </div>
+    </div>
+  );
+};
 
+export default mainDashboard;

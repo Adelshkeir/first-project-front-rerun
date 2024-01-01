@@ -1,14 +1,22 @@
 import { useState, useEffect } from "react";
 import axios from "axios";
 import "./editProductForm.css";
+import { useAuthContext } from "../../hooks/useAuthContext";
 
 const EditProductForm = ({ setEditOpen, singleProduct, refresh }) => {
   const [category, setCategory] = useState("");
   const [productCategory, setProductCategory] = useState([]);
 
+  const { admin } = useAuthContext();
+  const [error, setError] = useState(null);
+
   const fetchCategories = async () => {
     try {
-      const response = await axios.get("http://localhost:4000/api/category");
+      const response = await axios.get("http://localhost:4000/api/category", {
+        headers: {
+          Authorization: `Bearer ${admin.token}`,
+        },
+      });
       console.log("hayde el response", response.data);
       setProductCategory(response.data);
     } catch (error) {
@@ -24,7 +32,6 @@ const EditProductForm = ({ setEditOpen, singleProduct, refresh }) => {
     (category) => category.category_name
   );
 
-
   const [data, setData] = useState(singleProduct);
 
   useEffect(() => {
@@ -33,6 +40,10 @@ const EditProductForm = ({ setEditOpen, singleProduct, refresh }) => {
 
   const handleEditProduct = async (e) => {
     e.preventDefault();
+    if (!admin) {
+      setError("You must be logged in");
+      return;
+    }
     try {
       const fData = new FormData();
       fData.append("product_name", data.product_name);
@@ -45,7 +56,12 @@ const EditProductForm = ({ setEditOpen, singleProduct, refresh }) => {
 
       const response = await axios.put(
         `http://localhost:4000/api/product/${data.id}`,
-        fData
+        fData,
+        {
+          headers: {
+            Authorization: `Bearer ${admin.token}`,
+          },
+        }
       );
       console.log(response);
       refresh("a");
@@ -54,7 +70,7 @@ const EditProductForm = ({ setEditOpen, singleProduct, refresh }) => {
       console.log(error);
     }
   };
-  console.log(data.Category.category_image)
+  // console.log(data.Category.category_image);
   return (
     <div className="form-container-edit-product">
       <form className="form-edit-category" onSubmit={handleEditProduct}>
@@ -64,7 +80,7 @@ const EditProductForm = ({ setEditOpen, singleProduct, refresh }) => {
               Product Name
               {/* 2 */}
               <input
-              // value: the data shown on the form same as data on the card (filled automatically)
+                // value: the data shown on the form same as data on the card (filled automatically)
                 type="text"
                 value={data.product_name || ""}
                 onChange={(e) => {
@@ -75,32 +91,30 @@ const EditProductForm = ({ setEditOpen, singleProduct, refresh }) => {
           </div>
           <div className="input-label-container-product-edit">
             <label className="label-product-edit">
-            Category:
-            
-            <select
-              value={data.Category.category_name || ""}
-              onChange={(e) => setCategory( e.target.value)}
-              required
-              className="option-category"
-            >
-              <option value="">Select a category</option>
-              {allcategories.map((category, index) => (
-                <option key={index} value={category}>
-                  {category}
-                </option>
-              ))}
-            </select>
+              Category:
+              <select
+                value={data.Category.category_name || ""}
+                onChange={(e) => setCategory(e.target.value)}
+                required
+                className="option-category"
+              >
+                <option value="">Select a category</option>
+                {allcategories.map((category, index) => (
+                  <option key={index} value={category}>
+                    {category}
+                  </option>
+                ))}
+              </select>
             </label>
           </div>
           <div className="input-label-container-product-edit">
-          <img
+            <img
               src={`http://localhost:4000/${data.image}`}
               width={"200px"}
               alt={data.id}
             />
-            
-            </div>
-           
+          </div>
+
           <div className="input-label-container-product-edit">
             <label className="label-product-edit">
               Product Image
@@ -176,6 +190,7 @@ const EditProductForm = ({ setEditOpen, singleProduct, refresh }) => {
             <button className="add-button-product" type="submit">
               Edit
             </button>
+            {error && <div className="error">{error}</div>}
           </div>
         </div>
       </form>

@@ -21,8 +21,8 @@ import ProductIcon from "../../assets/product-icon.png";
 import Logout from "../../assets/Logout-Icon.png";
 import "./sidebar.css";
 import { Link } from "react-router-dom";
-
-
+import { useLogout } from "../../hooks/useLogout.jsx";
+import { useAuthContext } from "../../hooks/useAuthContext";
 
 const drawerWidth = 240;
 
@@ -93,6 +93,12 @@ const Drawer = styled(MuiDrawer, {
 }));
 
 export default function MiniDrawer() {
+  const { logout } = useLogout();
+
+  const handleClick = async () => {
+    logout();
+  };
+
   const theme = useTheme();
   const [open, setOpen] = React.useState(false);
 
@@ -122,23 +128,26 @@ export default function MiniDrawer() {
             >
               <MenuIcon />
             </IconButton>
-            
-            
+
             <Typography
               className="text-dash"
               variant="h6"
               noWrap
               component="div"
-              style={{ textDecoration: 'none'}}
-            ><Link to="/admin" style={{ textDecoration: 'none', color: '#D77A46'}}>
-              DASHBOARD
+              style={{ textDecoration: "none" }}
+            >
+              <Link
+                to="/admin"
+                style={{ textDecoration: "none", color: "#D77A46" }}
+              >
+                DASHBOARD
               </Link>
             </Typography>
             
-          
-            <div className="logout">
-              <img src={Logout} />
-            </div>
+                <button className="logout-button-admin" onClick={handleClick}>
+                  <img src={Logout} />
+                </button>
+               
           </Toolbar>
         </AppBar>
       </div>

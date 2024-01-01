@@ -6,7 +6,7 @@ import EditProductForm from "../../components/editProductForm/editProductForm.js
 import { useState, useEffect } from "react";
 import axios from "axios";
 import "./ProductPage.css";
-// import './sidebar.css'
+import { useAuthContext } from "../../hooks/useAuthContext.jsx";
 
 const ProductsPage = () => {
   const [product, setProduct] = useState([]);
@@ -14,12 +14,22 @@ const ProductsPage = () => {
   const [isEditOpen, setEditOpen] = useState(false);
   const [singleProduct, setSingleProduct] = useState({});
   const [refreshProductPage, setRefreshProductPage] = useState("");
+  const { admin } = useAuthContext();
 
-  const fetchProduct = async () => {
-    const response = await axios.get("http://localhost:4000/api/product");
-    console.log("response l product", response.data);
-    setProduct(response.data);
-  };
+  useEffect(() => {
+    const fetchProduct = async () => {
+      const response = await axios.get("http://localhost:4000/api/product", {
+        headers: {
+          Authorization: `Bearer ${admin.token}`,
+        },
+      });
+      console.log("response l product", response.data);
+      setProduct(response.data);
+    };
+    if (admin) {
+      fetchProduct();
+    }
+  }, [refreshProductPage,admin]);
 
   const handleChangeProduct = (productObject) => {
     setSingleProduct(productObject);
@@ -31,9 +41,6 @@ const ProductsPage = () => {
     setRefreshProductPage(refreshProductPage + refresh);
   };
 
-  useEffect(() => {
-    fetchProduct();
-  }, [refreshProductPage]);
   return (
     <div className="category-page-container">
       <Sidebar />
@@ -46,9 +53,9 @@ const ProductsPage = () => {
         />
       )}
       <div className="add-button-icon">
-      <button onClick={() => setIsOpen(true)}  >
-        <img src={AddIcon} />
-      </button>
+        <button onClick={() => setIsOpen(true)}>
+          <img src={AddIcon} />
+        </button>
       </div>
       <div className="product-cards">
         {product.map((eachProduct) => (
