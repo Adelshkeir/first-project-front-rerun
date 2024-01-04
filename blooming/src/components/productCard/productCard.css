@@ -79,7 +79,7 @@
   align-items: center;
 }
 
-.card-subtitle-product{
+.card-subtitle-product {
   display: flex;
   justify-content: flex-start;
   width: 200px;
@@ -89,13 +89,6 @@
   width: 100%;
   border: 1px solid var(--main-color);
   border-radius: 50px;
-}
-
-.card-footer {
-  /* display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: center; */
 }
 
 .card-price-product {

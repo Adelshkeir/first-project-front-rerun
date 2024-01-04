@@ -28,9 +28,7 @@ export const AuthContextProvider = ({ children }) => {
     admin: null, //because at first the admin will not be logged in when starting the website
   });
 
-
   //RECAP: when the app loads and the AuthContextProvider renders the useEffect function will run just once so if the user exists an login action will take place or it will stay null if it doesn't exists
-
 
   //when the application starts it will check if the token is available
   //we parse it to an object because it is a json string

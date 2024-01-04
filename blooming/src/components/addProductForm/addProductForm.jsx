@@ -3,8 +3,6 @@ import { useState, useEffect } from "react";
 import axios from "axios";
 import { useAuthContext } from "../../hooks/useAuthContext";
 
-//if category not found alert... + check other functionalities
-
 // 1st bring the product object
 // 2nd assign the values to the inputs
 // 3rd create a function to handleAddForm with form data (key, value) + fetch
@@ -182,18 +180,6 @@ const AddForm = ({ setIsOpen, refresh }) => {
             </label>
           </div>
         </div>
-        {/* <div className="input-label-container-product">
-          <label className="label-product">
-            Date
-            <input
-              type="text"
-              value={data.date || ""}
-              onChange={(e) => {
-                setData({ ...data, date: e.target.value });
-              }}
-            />
-          </label>
-        </div> */}
         <div className="product-buttons-container">
           <div className="cancel-product-1">
             <button

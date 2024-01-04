@@ -1,8 +1,9 @@
 import "./mainDashboard.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { useLogin } from "../../hooks/useLogin";
+import googleIcon from "../../assets/google.png";
 
-const mainDashboard = () => {
+const mainDashboard = ({ handleClick }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { login, error, isLoading } = useLogin();
@@ -40,10 +41,12 @@ const mainDashboard = () => {
             <button className="btn" disabled={isLoading}>
               Login
             </button>
-            {error && <div className="error">{error}</div>}
           </div>
         </form>
       </div>
+      <button className="btn-google" onClick={handleClick}>
+        <img src={googleIcon} />
+      </button>
     </div>
   );
 };

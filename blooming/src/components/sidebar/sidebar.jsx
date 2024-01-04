@@ -97,6 +97,8 @@ export default function MiniDrawer() {
 
   const handleClick = async () => {
     logout();
+    localStorage.clear();
+    window.location.reload();
   };
 
   const theme = useTheme();

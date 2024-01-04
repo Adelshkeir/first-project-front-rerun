@@ -8,7 +8,6 @@ import "./main.css";
 import AdminPage from "./pages/admin/AdminPage.jsx";
 import Category from "./pages/admin/CategoryPage.jsx";
 import Product from "./pages/admin/ProductPage.jsx";
-// import Product from './pages/admin/ProductPage.jsx'
 import Signup from "./pages/signUp.jsx";
 import { useAuthContext } from "./hooks/useAuthContext.jsx";
 
@@ -41,6 +40,3 @@ function App() {
 }
 
 export default App;
-
-//check all the forms handle the errors with
-// secure the products in the front

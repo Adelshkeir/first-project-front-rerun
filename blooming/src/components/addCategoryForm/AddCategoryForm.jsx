@@ -8,9 +8,9 @@ const AddForm = ({ refresh, setIsOpen }) => {
   //category object (1)
   //jebna el category object ta n3abbi
   const [data, setData] = useState({
-    category_name: "alicopter",
+    category_name: " ",
     category_image: null,
-    date: "2023-01-01",
+    date: null,
   });
   const [error, setError] = useState(null);
   const {admin} = useAuthContext()
@@ -85,7 +85,7 @@ const AddForm = ({ refresh, setIsOpen }) => {
             <label className="label-category">
               Date
               <input
-                type="text"
+                type="date"
                 value={data.date || ""}
                 onChange={(e) => {
                   setData({ ...data, date: e.target.value });

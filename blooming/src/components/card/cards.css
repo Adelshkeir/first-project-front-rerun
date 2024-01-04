@@ -84,13 +84,6 @@
   border-radius: 50px;
 }
 
-.card-footer {
-  /* display: flex;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: center; */
-}
-
 .card-price {
   font-size: 20px;
   font-weight: 500;
