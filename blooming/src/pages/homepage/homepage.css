@@ -1,0 +1,57 @@
+
+.home-page-whatweoffer{
+display: grid;
+grid-template-columns: 1fr 1fr 1fr;
+width: 80%;
+margin: auto;
+}
+
+.home-page-whatweoffer-singlecard {
+    width: 80%;   
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    margin: auto;
+   }
+
+.home-page-whatweoffer-singlecard img{
+ width: 80%;
+ height: 70%;   
+ margin: auto;
+}
+
+
+.home-page-whatweoffer-info{
+    text-align: center;
+    width: 80%;
+}
+
+.home-page-second-section{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 50px;
+    margin-top: 50px;
+}
+
+.home-oage-whatweoffer-header{
+    color: #d77a46;
+    font-family: rye;
+}
+
+
+@media only screen and (max-width: 767px) {
+
+    .home-page-whatweoffer{
+        grid-template-columns: 1fr;
+    }
+    .home-page-whatweoffer-singlecard{
+        width: 100%;
+    }
+    .home-page-whatweoffer{
+        width: 80%;
+    }
+  }
+
+

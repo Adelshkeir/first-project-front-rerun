@@ -16,9 +16,9 @@ function App() {
 
 <Route path="/" element={<HomePage />}></Route>
 <Route path='/Categories' element={<Categoriespage />}></Route>
-<Route path="/Singleproductpage" element={<Singleproductpage />}></Route>
+<Route path="/Singleproductpage/:id" element={<Singleproductpage />}></Route>
 <Route path='/about' element={<Aboutus/>}></Route>
-<Route path='/products' element={<Productspage />}></Route>
+<Route path='/products/:category_name' element={<Productspage />}></Route>
 </Routes>
 </BrowserRouter>
   )

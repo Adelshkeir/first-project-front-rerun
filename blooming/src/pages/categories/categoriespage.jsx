@@ -1,6 +1,6 @@
 import Navbar from "../../components/navbar/Navbar";
 import "./categoriespage.css";
-import Categorypagecard from "./categoriespagecard";
+
 import Categorycarousel from "./categorycarousel";
 const Categoriespage = () => {
   return (
