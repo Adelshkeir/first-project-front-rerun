@@ -16,7 +16,7 @@ const AddForm = ({ setIsOpen, refresh }) => {
 
   const fetchCategories = async () => {
     try {
-      const response = await axios.get("http://localhost:4001/api/category",
+      const response = await axios.get("http://localhost:4000/api/category",
       {
         headers: {
           Authorization: `Bearer ${admin.token}`,
@@ -64,7 +64,7 @@ const AddForm = ({ setIsOpen, refresh }) => {
       fData.append("category_name", category);
 
       const fetchedProduct = await axios.post(
-        "http://localhost:4001/api/product",
+        "http://localhost:4000/api/product",
         fData,
         {
           headers: {

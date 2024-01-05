@@ -12,7 +12,7 @@ const EditProductForm = ({ setEditOpen, singleProduct, refresh }) => {
 
   const fetchCategories = async () => {
     try {
-      const response = await axios.get("http://localhost:4001/api/category", {
+      const response = await axios.get("http://localhost:4000/api/category", {
         headers: {
           Authorization: `Bearer ${admin.token}`,
         },
@@ -55,7 +55,7 @@ const EditProductForm = ({ setEditOpen, singleProduct, refresh }) => {
       fData.append("category_name", data.category_name);
 
       const response = await axios.put(
-        `http://localhost:4001/api/product/${data.id}`,
+        `http://localhost:4000/api/product/${data.id}`,
         fData,
         {
           headers: {
@@ -109,7 +109,7 @@ const EditProductForm = ({ setEditOpen, singleProduct, refresh }) => {
           </div>
           <div className="input-label-container-product-edit">
             <img
-              src={`http://localhost:4001/${data.image}`}
+              src={`http://localhost:4000/${data.image}`}
               width={"200px"}
               alt={data.id}
             />

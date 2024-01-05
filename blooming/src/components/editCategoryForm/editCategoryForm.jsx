@@ -25,7 +25,7 @@ const EditCategoryForm = ({ refresh, setIsOpen, singleCategory }) => {
       fData.append("category_image", data.category_image);
 
       const response = await axios.put(
-        `http://localhost:4001/api/category/${data.id}`,
+        `http://localhost:4000/api/category/${data.id}`,
         fData,
         {
           headers: {
@@ -62,7 +62,7 @@ const EditCategoryForm = ({ refresh, setIsOpen, singleCategory }) => {
           </div>
           <div className="input-label-container-category-edit">
             <img
-              src={`http://localhost:4001/${data.category_image}`}
+              src={`http://localhost:4000/${data.category_image}`}
               width={"200px"}
               alt={data.id}
             />

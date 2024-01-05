@@ -4,17 +4,23 @@ import Productcarousel from "./cardproductcarousel";
 import "./productspage.css";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import { useAuthContext } from "../../hooks/useAuthContext";
 const Productspage = () => {
   const { category_name } = useParams();
   const [products, setProducts] = useState([]);
-
+  const { admin } = useAuthContext();
   useEffect(() => {
     const fetchProducts = () => {
       axios
-        .get(`http://localhost:4001/api/product?category_name=${category_name}`)
+        .get(`http://localhost:4000/api/product?category_name=${category_name}`,
+        {
+          headers: {
+            Authorization: `Bearer ${admin.token}`,
+          },
+        })
         .then((res) => {
           setProducts(res.data);
-          console.log(res);
+          console.log("this is the response",res);
         })
         .catch((err) => {
           console.log(err);

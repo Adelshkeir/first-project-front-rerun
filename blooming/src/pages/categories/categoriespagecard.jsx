@@ -6,7 +6,7 @@ const Categorypagecard = ({data}) => {
     <Link to={`/products/${data.category_name}`} style={{ textDecoration: 'none' }}>
     <div className="categorycardcontainer">
       <div>
-        <img src={`http://localhost:4001/${data.category_image}`} />
+        <img src={`http://localhost:4000/${data.category_image}`} />
       </div>
       <p>{data.category_name}</p>
     </div>

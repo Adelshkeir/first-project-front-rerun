@@ -4,6 +4,7 @@ import "./singleproductpage.css";
 import { useParams } from "react-router-dom";
 import axios from "axios";
 import Review from "./singleproductpagereviews";
+import { useAuthContext } from "../../hooks/useAuthContext";
 
 const Singleproductpage = () => {
   const { id } = useParams();
@@ -11,7 +12,7 @@ const Singleproductpage = () => {
   const [review, setreview] = useState(null);
   const [name, setName] = useState('');
   const [addedreview, setaddedreview] = useState('');
-
+const {admin} = useAuthContext()
 
 
 
@@ -38,19 +39,11 @@ const Singleproductpage = () => {
   console.log(cart)
   };
 
-
-
-
-
-
-
-
-
   
   useEffect(() => {
     const fetchingreviews = () => {
       axios
-        .get(`http://localhost:4001/api/review/`)
+        .get(`http://localhost:4000/api/review/`)
         .then((res) => {
           setreview(res.data.data);
           console.log(res);
@@ -67,7 +60,12 @@ const Singleproductpage = () => {
   useEffect(() => {
     const fetchsingleproduct = () => {
       axios
-        .get(`http://localhost:4001/api/product/${id}`)
+        .get(`http://localhost:4000/api/product/${id}`,
+        {
+          headers: {
+            Authorization: `Bearer ${admin.token}`,
+          },
+        })  
         .then((res) => {
           setproduct(res.data);
           console.log(res);
@@ -96,7 +94,7 @@ const Singleproductpage = () => {
       review: addedreview,
       ProductId: product.id, 
     };
-    axios.post(`http://localhost:4001/api/review/`, reviewData)
+    axios.post(`http://localhost:4000/api/review/`, reviewData)
       .then((response) => {
         fetchingreviews();
         setName('');
@@ -117,7 +115,7 @@ const Singleproductpage = () => {
       <h1 className="single-product-page-item-name">{product.product_name}</h1>
       <div className="single-product-page-container">
         <div className="single-product-page-product-container">
-          <img src={`http://localhost:4001/${product.image}`} />
+          <img src={`http://localhost:4000/${product.image}`} />
           <div className="single-product-page-item-price">
             <h2>price</h2>
             <h2>{product.price}$</h2>

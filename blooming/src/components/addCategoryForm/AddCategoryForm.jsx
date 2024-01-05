@@ -30,7 +30,7 @@ const AddForm = ({ refresh, setIsOpen }) => {
       fData.append("category_image", data.category_image);
 
       const response = await axios.post(
-        "http://localhost:4001/api/category",
+        "http://localhost:4000/api/category",
         fData,
         {
           headers: {

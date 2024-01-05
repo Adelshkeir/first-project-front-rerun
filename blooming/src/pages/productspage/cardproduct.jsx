@@ -16,7 +16,7 @@ const CardProduct = ({ product }) => {
       <div>
         <section className="cakes">
           <div className="cake-card">
-            <img src={`http://localhost:4001/${product.image}`} />
+            <img src={`http://localhost:4000/${product.image}`} />
             <h3>{product.product_name}</h3>
             <span className="price-products">$20</span>
             <p>{product.description}</p>

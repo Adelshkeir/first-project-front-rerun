@@ -12,7 +12,7 @@ const ProductCard = ({ product, handleChangeProduct, refresh }) => {
     }
     try {
       const response = await axios.delete(
-        `http://localhost:4001/api/product/${product.id}`,
+        `http://localhost:4000/api/product/${product.id}`,
         {
           headers: {
             Authorization: `Bearer ${admin.admin.token}`,
@@ -34,7 +34,7 @@ const ProductCard = ({ product, handleChangeProduct, refresh }) => {
         <div className="card-img-product">
           <img
             className="cake-main-image-product"
-            src={`http://localhost:4001/${product.image}`}
+            src={`http://localhost:4000/${product.image}`}
           />
         </div>
 

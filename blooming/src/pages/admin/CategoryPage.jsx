@@ -18,7 +18,7 @@ const CategoriesPage = () => {
 
   useEffect(() => {
     const fetchCategories = async () => {
-      const response = await axios.get("http://localhost:4001/api/category", {
+      const response = await axios.get("http://localhost:4000/api/category", {
         headers: {
           Authorization: `Bearer ${admin.token}`,
         },

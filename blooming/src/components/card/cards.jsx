@@ -14,7 +14,7 @@ const cards = ({ category, handleChangeObject, refresh }) => {
     }
     try {
       const response = await axios.delete(
-        `http://localhost:4001/api/category/${category.id}`,
+        `http://localhost:4000/api/category/${category.id}`,
         {
           headers: {
             Authorization: `Bearer ${admin.admin.token}`,
@@ -34,7 +34,7 @@ const cards = ({ category, handleChangeObject, refresh }) => {
         <div className="card-img">
           <img
             className="cake-main-image"
-            src={`http://localhost:4001/${category.category_image}`}
+            src={`http://localhost:4000/${category.category_image}`}
           />
           
         </div>
