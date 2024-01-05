@@ -31,7 +31,7 @@ const CheckoutForm = ({ onClose }) => {
     try {
       // Send a POST request to the backend to create an order
       const response = await axios.post(
-        'http://localhost:4001/api/orders',
+        'http://localhost:4000/api/orders',
         {
           name: customerInfo.name,
           phonenumber: customerInfo.phonenumber,
