@@ -41,6 +41,8 @@ const EditCategoryForm = ({ refresh, setIsOpen, singleCategory }) => {
     }
   };
 
+  console.log("el image", data.category_image);
+
   return (
     <div className="form-container-edit-category">
       <form onSubmit={handleEditCategory} className="form-edit-category">

@@ -36,6 +36,7 @@ const cards = ({ category, handleChangeObject, refresh }) => {
             className="cake-main-image"
             src={`http://localhost:4000/${category.category_image}`}
           />
+          
         </div>
         <div className="card-title">{category.category_name}</div>
         <div className="card-subtitle">{category.date}</div>

@@ -2,11 +2,13 @@ import "./mainDashboard.css";
 import { useState, useEffect } from "react";
 import { useLogin } from "../../hooks/useLogin";
 import googleIcon from "../../assets/google.png";
+import { useValue } from "../../context/googleAuthContext";
 
-const mainDashboard = ({ handleClick }) => {
+const mainDashboard = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const { login, error, isLoading } = useLogin();
+  const {handleClick} = useValue()
 
   const handleSubmit = async (e) => {
     e.preventDefault();

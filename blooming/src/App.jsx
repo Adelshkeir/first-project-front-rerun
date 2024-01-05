@@ -10,8 +10,10 @@ import Category from "./pages/admin/CategoryPage.jsx";
 import Product from "./pages/admin/ProductPage.jsx";
 import Signup from "./pages/signUp.jsx";
 import { useAuthContext } from "./hooks/useAuthContext.jsx";
+import { useValue } from "./context/googleAuthContext.jsx";
 
 function App() {
+  const { value } = useValue();
   const { admin } = useAuthContext();
   return (
     <BrowserRouter>
@@ -27,11 +29,11 @@ function App() {
         <Route path="/admin" element={<AdminPage />}></Route>
         <Route
           path="/category"
-          element={admin ? <Category /> : <Navigate to="/admin" />}
+          element={admin || value ? <Category /> : <Navigate to="/admin" />}
         ></Route>
         <Route
           path="/product"
-          element={admin ? <Product /> : <Navigate to="/admin" />}
+          element={admin || value ? <Product /> : <Navigate to="/admin" />}
         ></Route>
         <Route path="/register" element={<Signup />}></Route>
       </Routes>
