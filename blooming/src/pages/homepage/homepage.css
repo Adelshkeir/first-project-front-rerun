@@ -55,3 +55,27 @@ margin: auto;
   }
 
 
+
+  .main-footer {
+    background: #FFFAEC;
+    padding: 20px;
+    color: #F13A44;
+    text-align: center;
+    height: 230px;
+    display: grid;
+    grid-template-columns: 33% 33% 33%;
+}
+
+.quick-links-1,
+.quick-links-2 {
+    /* margin-top: 20px; */
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    font-size: 20px
+}
+
+footer .rights p {
+    color: #F13A44;
+
+}

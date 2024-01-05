@@ -1,0 +1,83 @@
+.form-dashboard {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  align-content: center;
+  height: 100%;
+}
+
+.form-dashboard form .input-container input {
+  padding: 8px;
+  border-radius: 5px;
+}
+
+.form-dashboard form .input-container input:focus {
+  box-shadow: 0 0 10px #ff0000;
+}
+
+.button-container button {
+  color: white;
+  background-color: brown;
+  padding: 10px 55px;
+  font-weight: 700;
+}
+
+.button-container button:hover {
+  background-color: rgb(203, 159, 56);
+}
+
+.form-dashboard form label {
+  margin-bottom: 7px;
+  color: white;
+  font-weight: 700;
+}
+
+.form-dashboard form h1 {
+  color: white;
+}
+
+.form-dashboard form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  height: 55vh;
+  width: 25%;
+  background: linear-gradient(
+    to right top,
+    rgba(216, 129, 92, 0.7),
+    rgba(175, 111, 82, 0.7),
+    rgba(135, 93, 72, 0.7),
+    rgba(98, 75, 63, 0.7),
+    rgba(61, 57, 55, 0.7)
+  );
+  border-radius: 8px;
+}
+
+.input-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.main-dashboard-admin {
+  background: url("../../assets/admin-pic.jpg") no-repeat center center/cover;
+  height: 932px;
+}
+
+.btn-google img {
+  width: 250px;
+  border-radius: 85px;
+  height: 6vh;
+}
+
+.btn-google {
+  border-radius: 65px;
+  position: absolute;
+  top: 652px;
+  left: 790px;
+  height: 7vh;
+}
+
+.btn {
+  margin-top: -60px;
+}

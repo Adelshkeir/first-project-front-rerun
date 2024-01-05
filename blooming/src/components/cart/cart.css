@@ -1,0 +1,37 @@
+/* CartPopup.css */
+.custom-popup {
+    background-color: #f9f9f9;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+    padding: 10px;
+    /* Add any other styling as needed */
+    color: black;
+  }
+  
+  .cart-popup-content {
+    text-align: center;
+  }
+  
+  .cart-popup-content h2 {
+    color: #333;
+  }
+  
+  .cart-popup-content ul {
+    list-style-type: none;
+    padding: 0;
+  }
+  
+  .cart-popup-content li {
+    margin-bottom: 8px;
+  }
+  
+  .cart-popup-content button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  

@@ -1,0 +1,26 @@
+.category-page-container{
+    background: linear-gradient(to right top, rgba(216, 129, 92, 0.7), rgba(175, 111, 82, 0.7), rgba(135, 93, 72, 0.7), rgba(98, 75, 63, 0.7), rgba(61, 57, 55, 0.7));
+    height: 932px;
+}
+
+.add-button-icon{
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 100px;
+    margin-right: 50px;
+}
+
+.add-button-icon img {
+    height: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.category-cards{
+    display: flex;
+    justify-content: space-around;
+    margin: 0 auto;
+    width: 80%;
+    margin-top: 150px;
+}

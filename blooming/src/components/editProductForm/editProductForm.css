@@ -1,0 +1,38 @@
+.form-container-edit-product {
+  position: absolute;
+  left: 560px;
+  top: 150px;
+  z-index: 1;
+  height: 80vh;
+  width: 740px;
+  background: linear-gradient(
+    to right top,
+    rgba(216, 129, 92),
+    rgba(175, 111, 82),
+    rgba(135, 93, 72),
+    rgba(98, 75, 63),
+    rgba(61, 57, 55)
+  );
+  border-radius: 12px;
+}
+
+.form-edit-product {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+  align-items: center;
+  width: 100%;
+}
+
+.input-label-container-product-edit .label-product-edit {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 40px auto;
+  color: white;
+}
+
+.option-category {
+  display: flex;
+}

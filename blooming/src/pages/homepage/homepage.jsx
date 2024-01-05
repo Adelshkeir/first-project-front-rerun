@@ -9,6 +9,27 @@ const HomePage = () => {
       <Navbar />
       <HomeCarousel />
       <Whatweoffer />
+      <footer className="main-footer">
+          
+          <div className="blooming-logo">
+            {/* <img src={Blooming} /> */}
+          </div>
+            <div className="quick-links-1">
+              <p>facebook</p>
+              <p>facebook</p>
+              <p>facebook</p>
+              <div className="rights">
+              <p>Blooming &copy; 2023, All Rights Reserved</p>
+              </div>
+            </div>
+            <div className="quick-links-2">
+              <p>facebook</p>
+              <p>facebook</p>
+              <p>facebook</p>
+
+            </div>
+            
+        </footer>
     </div>
   );
 };

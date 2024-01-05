@@ -12,6 +12,41 @@ const Singleproductpage = () => {
   const [name, setName] = useState('');
   const [addedreview, setaddedreview] = useState('');
 
+
+
+
+  const addToCart = (item) => {
+    let cart = [];
+  
+    if (localStorage.getItem('cart')) {
+      cart = JSON.parse(localStorage.getItem('cart'));
+    }
+  
+    if (cart.find((cartItem) => cartItem.name === item.name)) {
+      let foundItem = cart.find((cartItem) => cartItem.name === item.name);
+      foundItem.quantity = parseInt(foundItem.quantity) + parseInt(item.quantity);
+  
+      cart = [
+        ...cart.filter((cartItem) => cartItem.name !== item.name),
+        foundItem,
+      ];
+    } else {
+      cart.push(item);
+    }
+  
+    localStorage.setItem('cart', JSON.stringify(cart));
+  console.log(cart)
+  };
+
+
+
+
+
+
+
+
+
+  
   useEffect(() => {
     const fetchingreviews = () => {
       axios
@@ -89,6 +124,11 @@ const Singleproductpage = () => {
           </div>
           <p>Description : {product.description}</p>
           <p>Available flavours : {product.flavours}</p>
+          <button id="addToCartBtn" onClick={() => addToCart({
+          name: product.product_name,
+          price: product.price,
+          quantity: 1, 
+        })}>Add to Cart</button>
         </div>
 
         <div className="single-product-page-product-reviews">
