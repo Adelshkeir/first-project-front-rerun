@@ -10,23 +10,22 @@ const Singleproductpage = () => {
   const { id } = useParams();
   const [product, setproduct] = useState([]);
   const [review, setreview] = useState(null);
-  const [name, setName] = useState('');
-  const [addedreview, setaddedreview] = useState('');
-const {admin} = useAuthContext()
-
-
+  const [name, setName] = useState("");
+  const [addedreview, setaddedreview] = useState("");
+  const { admin } = useAuthContext();
 
   const addToCart = (item) => {
     let cart = [];
-  
-    if (localStorage.getItem('cart')) {
-      cart = JSON.parse(localStorage.getItem('cart'));
+
+    if (localStorage.getItem("cart")) {
+      cart = JSON.parse(localStorage.getItem("cart"));
     }
-  
+
     if (cart.find((cartItem) => cartItem.name === item.name)) {
       let foundItem = cart.find((cartItem) => cartItem.name === item.name);
-      foundItem.quantity = parseInt(foundItem.quantity) + parseInt(item.quantity);
-  
+      foundItem.quantity =
+        parseInt(foundItem.quantity) + parseInt(item.quantity);
+
       cart = [
         ...cart.filter((cartItem) => cartItem.name !== item.name),
         foundItem,
@@ -34,53 +33,48 @@ const {admin} = useAuthContext()
     } else {
       cart.push(item);
     }
-  
-    localStorage.setItem('cart', JSON.stringify(cart));
-  console.log(cart)
+
+    localStorage.setItem("cart", JSON.stringify(cart));
+    console.log(cart);
   };
 
-  
-  useEffect(() => {
-    const fetchingreviews = () => {
-      axios
-        .get(`http://localhost:4000/api/review/`)
-        .then((res) => {
-          setreview(res.data.data);
-          console.log(res);
-        })
-        .catch((err) => {
-          console.log(err);
-          setreview([]);
-        });
-    };
+  const fetchingreviews = () => {
+    axios
+      .get(`http://localhost:4000/api/review/`)
+      .then((res) => {
+        setreview(res.data.data);
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+        setreview([]);
+      });
+  };
 
+  useEffect(() => {
     fetchingreviews();
   }, []);
 
-  useEffect(() => {
-    const fetchsingleproduct = () => {
-      axios
-        .get(`http://localhost:4000/api/product/${id}`,
-        {
-          headers: {
-            Authorization: `Bearer ${admin.token}`,
-          },
-        })  
-        .then((res) => {
-          setproduct(res.data);
-          console.log(res);
-        })
-        .catch((err) => {
-          console.log(err);
-          setproduct([]);
-        });
-    };
+  const fetchsingleproduct = () => {
+    axios
+      .get(`http://localhost:4000/api/product/${id}`, {
+        headers: {
+          Authorization: `Bearer ${admin.token}`,
+        },
+      })
+      .then((res) => {
+        setproduct(res.data);
+        console.log(res);
+      })
+      .catch((err) => {
+        console.log(err);
+        setproduct([]);
+      });
+  };
 
+  useEffect(() => {
     fetchsingleproduct();
   }, []);
-
-
-
 
   const handleReviewSubmit = (e) => {
     e.preventDefault();
@@ -92,22 +86,19 @@ const {admin} = useAuthContext()
     const reviewData = {
       name,
       review: addedreview,
-      ProductId: product.id, 
+      ProductId: product.id,
     };
-    axios.post(`http://localhost:4000/api/review/`, reviewData)
+    axios
+      .post(`http://localhost:4000/api/review/`, reviewData)
       .then((response) => {
         fetchingreviews();
-        setName('');
-        setaddedreview('');
+        setName("");
+        setaddedreview("");
       })
       .catch((error) => {
         console.error("Error submitting review:", error);
       });
   };
-
-
-
-
 
   return (
     <div>
@@ -122,11 +113,18 @@ const {admin} = useAuthContext()
           </div>
           <p>Description : {product.description}</p>
           <p>Available flavours : {product.flavours}</p>
-          <button id="addToCartBtn" onClick={() => addToCart({
-          name: product.product_name,
-          price: product.price,
-          quantity: 1, 
-        })}>Add to Cart</button>
+          <button
+            id="addToCartBtn"
+            onClick={() =>
+              addToCart({
+                name: product.product_name,
+                price: product.price,
+                quantity: 1,
+              })
+            }
+          >
+            Add to Cart
+          </button>
         </div>
 
         <div className="single-product-page-product-reviews">
@@ -136,7 +134,9 @@ const {admin} = useAuthContext()
             </h1>
 
             {review &&
-              review.filter((item) => item.ProductId === product.id).map((item, index) => <Review key={index} data={item} />)}
+              review
+                .filter((item) => item.ProductId === product.id)
+                .map((item, index) => <Review key={index} data={item} />)}
           </div>
 
           <div className="single-product-page-product-reviews-second">
@@ -144,19 +144,23 @@ const {admin} = useAuthContext()
             <form onSubmit={handleReviewSubmit}>
               <label>
                 Name:
-                <input type="text" value={name} onChange={(e) => setName(e.target.value)} />
+                <input
+                  type="text"
+                  value={name}
+                  onChange={(e) => setName(e.target.value)}
+                />
               </label>
               <br />
               <label>
                 Review:
-                <textarea value={addedreview} onChange={(e) => setaddedreview(e.target.value)} />
+                <textarea
+                  value={addedreview}
+                  onChange={(e) => setaddedreview(e.target.value)}
+                />
               </label>
               <br />
               <button type="submit">Submit Review</button>
             </form>
-
-
-
           </div>
         </div>
       </div>
