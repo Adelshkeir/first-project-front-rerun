@@ -1,7 +1,7 @@
 import Carousel from "react-multi-carousel";
 import "react-multi-carousel/lib/styles.css";
-
 import CardProduct from "./cardproduct.jsx";
+import { useParams } from "react-router-dom";
 
 const responsive = {
   desktop: {
@@ -22,6 +22,8 @@ const responsive = {
 };
 
 const Productcarousel = ({ products,category_name }) => {
+
+
   return (
     <Carousel
       swipeable={true}
@@ -39,7 +41,7 @@ const Productcarousel = ({ products,category_name }) => {
       dotListClass="custom-dot-list-style"
       itemClass={`carousel-item-padding-40-px`}
     >
-{products.map((product, index) => (
+{products.filter(product =>product.Category.category_name === category_name).map((product, index) => (
   <CardProduct key={index} product={product} />
 ))}
     </Carousel>

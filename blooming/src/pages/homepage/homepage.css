@@ -19,6 +19,7 @@ margin: auto;
  width: 80%;
  height: 70%;   
  margin: auto;
+ border-radius: 20%;
 }
 
 
@@ -88,8 +89,8 @@ footer .rights p {
   padding:45px 0 20px;
   font-size:15px;
   line-height:24px;
-  color:#000000
-  
+  color:#000000;
+  margin-top: 15px;
 }
 .site-footer hr
 {
@@ -157,8 +158,16 @@ footer .rights p {
 {
   display: flex;
   justify-content: center;
-  margin-left: 450px;
+  margin-left: 50%;
 }
+
+@media (min-width: 768px) {
+  .copyright-text {
+    margin-left: 40%;
+  }
+ }
+ 
+
 @media (max-width:991px)
 {
   .site-footer [class^=col-]

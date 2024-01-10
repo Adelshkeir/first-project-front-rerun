@@ -35,9 +35,9 @@ function Navbar() {
           <Button component={Link} to="/Categories" sx={{ mx: 1, color: "#F13A44" }}>
             Categories
           </Button>
-          <Button component={Link} to="/contact" sx={{ mx: 1, color: "#F13A44" }}>
+          {/* <Button component={Link} to="/contact" sx={{ mx: 1, color: "#F13A44" }}>
             Contact Us
-          </Button>
+          </Button> */}
           <img
             src={cart}
             onClick={togglePopup}

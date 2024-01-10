@@ -113,7 +113,8 @@ export default function MiniDrawer() {
   };
 
   return (
-    <Box sx={{ display: "flex" }}>
+    
+    <Box sx={{ display: "flex" }} >
       <CssBaseline />
       <div>
         <AppBar position="fixed" open={open}>
@@ -143,6 +144,7 @@ export default function MiniDrawer() {
                 style={{ textDecoration: "none", color: "#D77A46" }}
               >
                 DASHBOARD
+                
               </Link>
             </Typography>
             
@@ -152,8 +154,11 @@ export default function MiniDrawer() {
                
           </Toolbar>
         </AppBar>
+        
       </div>
+      
       <Drawer variant="permanent" open={open}>
+        
         <DrawerHeader>
           <IconButton onClick={handleDrawerClose}>
             {theme.direction === "rtl" ? (
@@ -195,8 +200,12 @@ export default function MiniDrawer() {
               </ListItemButton>
             </ListItem>
           ))}
+          
         </List>
+          
       </Drawer>
+      
     </Box>
+    
   );
 }

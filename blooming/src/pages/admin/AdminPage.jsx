@@ -4,7 +4,7 @@ import { useAuthContext } from "../../hooks/useAuthContext.jsx";
 import { useValue } from "../../context/googleAuthContext.jsx";
 
 const AdminPage = () => {
-  const {value} = useValue()
+  const { value } = useValue();
   const { admin } = useAuthContext();
   return (
     <div className="admin-main-page">
